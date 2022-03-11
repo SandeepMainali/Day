@@ -1,0 +1,27 @@
+﻿@model List<Day2.Models.employee>
+@{ 
+    ViewBag.Title = "Index";
+    int Sn = 0;
+}
+
+<h2>Index</h2>
+<h3>Welcome back</h3>
+<table class=" table" border="1"style="background-color:aqua"> 
+    <tr>
+        <th>Sn</th>
+        <th>Name</th>
+        <th>Address</th>
+     
+    </tr>
+    @foreach (var data in Model)
+            {
+                <tr>
+                    <td>@(++Sn)</td>
+                    <td>@(data.Ename)</td>
+                    <td>@(data.EAddress)</td>
+                  
+                </tr>
+            }
+</table>
+
+

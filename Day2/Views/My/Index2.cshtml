@@ -1,0 +1,27 @@
+﻿@model List<Day2.Models.mainali>
+@{
+    ViewBag.Title = "Index2";
+    int Id = 0;
+}
+
+<h2>Index1</h2>
+<h3>Welcome back</h3>
+<table class=" table" border="1" style="background-color:aqua">
+    <tr>
+        <th>Sn</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>City</th>
+
+    </tr>
+    @foreach (var data in Model)
+    {
+        <tr>
+            <td>@(++Id)</td>
+            <td>@(data.Name)</td>
+            <td>@(data.Email)</td>
+            <td>@(data.City)</td>
+
+        </tr>
+    }
+</table>
