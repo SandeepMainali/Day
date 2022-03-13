@@ -7,6 +7,7 @@
     <Property Name="Eid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ename" Type="varchar" MaxLength="40" />
     <Property Name="EAddress" Type="varchar" MaxLength="40" />
+    <Property Name="EContact" Type="bigint" />
   </EntityType>
   <EntityType Name="mainali">
     <Key>

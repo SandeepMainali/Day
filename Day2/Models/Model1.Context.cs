@@ -25,7 +25,7 @@ namespace Day2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<employee> employees { get; set; }
         public virtual DbSet<mainali> mainalis { get; set; }
+        public virtual DbSet<employee> employees { get; set; }
     }
 }

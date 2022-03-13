@@ -16,5 +16,17 @@ namespace Day2.Controllers
             List<employee> data = db.employees.ToList();
             return View(data);
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        public ActionResult Savedata(employee tbl_sandeep)
+        {
+
+            db.employees.Add(tbl_sandeep);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            
+        }
     }
 }

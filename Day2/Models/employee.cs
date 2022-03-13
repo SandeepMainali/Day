@@ -17,5 +17,6 @@ namespace Day2.Models
         public int Eid { get; set; }
         public string Ename { get; set; }
         public string EAddress { get; set; }
+        public Nullable<long> EContact { get; set; }
     }
 }

@@ -4,13 +4,15 @@
     int Sn = 0;
 }
 
-<h2>Index</h2>
-<h3>Welcome back</h3>
+<h2>Welcome back</h2>
+<h3>Employee</h3><br>
+<a href="@Url.Action("Create") ">Add a New Record</a>
 <table class=" table" border="1"style="background-color:aqua"> 
     <tr>
         <th>Sn</th>
         <th>Name</th>
         <th>Address</th>
+        <th>Contact</th>
      
     </tr>
     @foreach (var data in Model)
@@ -19,6 +21,7 @@
                     <td>@(++Sn)</td>
                     <td>@(data.Ename)</td>
                     <td>@(data.EAddress)</td>
+                    <td>@(data.EContact )</td>
                   
                 </tr>
             }

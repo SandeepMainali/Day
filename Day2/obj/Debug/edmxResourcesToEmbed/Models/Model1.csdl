@@ -1,16 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="employeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="employee">
-    <Key>
-      <PropertyRef Name="Eid" />
-    </Key>
-    <Property Name="Eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Ename" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-    <Property Name="EAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityContainer Name="employeeEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="employees" EntityType="Self.employee" />
     <EntitySet Name="mainalis" EntityType="employeeModel.mainali" />
+    <EntitySet Name="employees" EntityType="employeeModel.employee" />
   </EntityContainer>
   <EntityType Name="mainali">
     <Key>
@@ -20,5 +12,14 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="Eid" />
+    </Key>
+    <Property Name="Eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ename" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="EAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="EContact" Type="Int64" />
   </EntityType>
 </Schema>

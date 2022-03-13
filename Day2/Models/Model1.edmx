@@ -12,6 +12,7 @@
           <Property Name="Eid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ename" Type="varchar" MaxLength="40" />
           <Property Name="EAddress" Type="varchar" MaxLength="40" />
+          <Property Name="EContact" Type="bigint" />
         </EntityType>
         <EntityType Name="mainali">
           <Key>
@@ -30,17 +31,9 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="employeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="employee">
-          <Key>
-            <PropertyRef Name="Eid" />
-          </Key>
-          <Property Name="Eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ename" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="EAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityContainer Name="employeeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="employees" EntityType="Self.employee" />
           <EntitySet Name="mainalis" EntityType="employeeModel.mainali" />
+          <EntitySet Name="employees" EntityType="employeeModel.employee" />
         </EntityContainer>
         <EntityType Name="mainali">
           <Key>
@@ -51,21 +44,21 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="Eid" />
+          </Key>
+          <Property Name="Eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ename" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EContact" Type="Int64" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="employeeModelStoreContainer" CdmEntityContainer="employeeEntities">
-          <EntitySetMapping Name="employees">
-            <EntityTypeMapping TypeName="employeeModel.employee">
-              <MappingFragment StoreEntitySet="employee">
-                <ScalarProperty Name="Eid" ColumnName="Eid" />
-                <ScalarProperty Name="Ename" ColumnName="Ename" />
-                <ScalarProperty Name="EAddress" ColumnName="EAddress" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="mainalis">
             <EntityTypeMapping TypeName="employeeModel.mainali">
               <MappingFragment StoreEntitySet="mainali">
@@ -73,6 +66,16 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="employeeModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="EContact" ColumnName="EContact" />
+                <ScalarProperty Name="EAddress" ColumnName="EAddress" />
+                <ScalarProperty Name="Ename" ColumnName="Ename" />
+                <ScalarProperty Name="Eid" ColumnName="Eid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
