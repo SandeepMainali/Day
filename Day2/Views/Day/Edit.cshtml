@@ -1,14 +1,12 @@
-﻿
+﻿@model Day2.Models.employee
 @{
-    ViewBag.Title = "Create";
-
+    ViewBag.Title = "Edit";
 }
 
-<h2>Today Monday</h2>
-<h3>Create</h3>
-
-<form action="savedata">
-
+<h2>Edit</h2>
+@using (Html.BeginForm("updateData", "Day"))
+{
+    <input type="hidden" name="Eid" value=" @Model.Eid" />
     <label class="col-md-u">Name</label>
     <div class="col-md-u">
         <input type="text" name="Ename" class="form-control " />
@@ -20,11 +18,11 @@
     <label>Contact</label>
     <div class="col-md-u">
         <input type="text" name="EContact" class=" form-control " />
-    </div><br />
+    </div>
+    <br />
     <div class=" col-md-u">
         <input type="submit" class=" btn btn-success " value=" submit" />
     </div>
-    </form>
-
+}
 <br>
-<a href="@Url.Action("create")"> Add New Record</a> 
+

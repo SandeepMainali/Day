@@ -1,0 +1,28 @@
+﻿
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+<h2>Monday</h2>
+
+<form action="Savedata">
+    <label class="col-md-u">Name</label>
+    <div class="col-md-u">
+        <input type="text" name="Name" class="form-control " />
+    </div>
+    <label>Email</label>
+    <div class="col-md-u">
+        <input type="text" name="Email" class=" form-control " />
+    </div>
+    <label>City</label>
+    <div class="col-md-u">
+        <input type="text" name="City" class=" form-control " />
+    </div><br />
+    <div class=" col-md-u">
+        <input type="submit" class=" btn btn-success " value=" submit" />
+    </div>
+</form>
+<br>
+<a href="@Url.Action("Add")"> Add New Record</a> 

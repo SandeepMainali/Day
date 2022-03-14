@@ -16,5 +16,17 @@ namespace Day2.Controllers
             List<mainali> data = db.mainalis.ToList();
             return View(data);
         }
+        public ActionResult Add()
+        {
+           
+            return View();
+        }
+        public ActionResult Savedata(mainali tbl_sandip)
+        {
+
+            db.mainalis.Add(tbl_sandip);
+            db.SaveChanges();
+            return RedirectToAction("Add");
+        }
     }
 }

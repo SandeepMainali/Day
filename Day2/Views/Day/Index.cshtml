@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Address</th>
         <th>Contact</th>
+        <th>Edit</th>
      
     </tr>
     @foreach (var data in Model)
@@ -22,6 +23,8 @@
                     <td>@(data.Ename)</td>
                     <td>@(data.EAddress)</td>
                     <td>@(data.EContact )</td>
+                   <td> <a href="@Url.Action("Edit", new {id=data.Eid })">Edit</a></td>
+
                   
                 </tr>
             }
