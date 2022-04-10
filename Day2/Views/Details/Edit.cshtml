@@ -1,0 +1,27 @@
+﻿@model Day2.Models.employee_salary_details
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("updateData", "Details"))
+{
+    <input type="hidden" name="id" value=" @Model.id" />
+    <label class="col-md-u">employee id</label>
+    <div class="col-md-u">
+        <input type="number" name="employee_id" class="form-control " />
+    </div>
+    <label>salary_paid</label>
+    <div class="col-md-u">
+        <input type="number" name="salary-paid" class=" form-control " />
+    </div>
+    <label>paid_date</label>
+    <div class="col-md-u">
+        <input type="date" name="paid_date" class=" form-control " />
+    </div>
+    <br />
+    <div class=" col-md-u">
+        <input type="submit" class=" btn btn-success " value=" submit" />
+    </div>
+}
+<br>

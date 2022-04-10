@@ -5,7 +5,7 @@
 }
 
 <h2>Welcome back</h2>
-<h3>Employee</h3><br>
+<h3>Employee Record Details</h3><br>
 <a href="@Url.Action("Create") ">Add a New Record</a>
 <table class=" table" border="1"style="background-color:aqua"> 
     <tr>
@@ -14,20 +14,24 @@
         <th>Address</th>
         <th>Contact</th>
         <th>Edit</th>
+        <th>Delete</th>
      
     </tr>
     @foreach (var data in Model)
-            {
-                <tr>
-                    <td>@(++Sn)</td>
-                    <td>@(data.Ename)</td>
-                    <td>@(data.EAddress)</td>
-                    <td>@(data.EContact )</td>
-                   <td> <a href="@Url.Action("Edit", new {id=data.Eid })">Edit</a></td>
+    {
+<tr>
+    <td>@(++Sn)</td>
+    <td>@(data.Ename)</td>
+    <td>@(data.EAddress)</td>
+    <td>@(data.EContact )</td>
+    <td> <a href="@Url.Action("Edit", new { id = data.Eid })">Edit</a></td>
+    <td> <a href="@Url.Action("deletedata", new { Eid = data.Eid })">Delete</a></td>
 
-                  
-                </tr>
-            }
+
+
+</tr>
+    }
+
 </table>
 
 

@@ -32,7 +32,7 @@ namespace Day2.Controllers
         }
         public ActionResult updatedata(employee employee)
         {
-           
+            
             db.Entry(employee).State=EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -45,4 +45,12 @@ namespace Day2.Controllers
 
 
     }
+    public ActionResult deletedata(int Eid)
+    {
+        employee data = db.employees.Find(Eid);
+        db.employees.Remove(data);
+        db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+    
     }

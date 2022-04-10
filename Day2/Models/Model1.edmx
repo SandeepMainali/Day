@@ -14,36 +14,47 @@
           <Property Name="EAddress" Type="varchar" MaxLength="40" />
           <Property Name="EContact" Type="bigint" />
         </EntityType>
-        <EntityType Name="mainali">
+        <EntityType Name="employee_salary_details">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="salary_paid" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="paid_date" Type="datetime" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_employee_salary_details_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="employee_salary_details" Type="Self.employee_salary_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="Eid" />
+            </Principal>
+            <Dependent Role="employee_salary_details">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="employeeModelStoreContainer">
           <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="mainali" EntityType="Self.mainali" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee_salary_details" EntityType="Self.employee_salary_details" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_employee_salary_details_employee" Association="Self.FK_employee_salary_details_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employee_salary_details" EntitySet="employee_salary_details" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="employeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="employeeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="mainalis" EntityType="employeeModel.mainali" />
           <EntitySet Name="employees" EntityType="employeeModel.employee" />
+          <EntitySet Name="employee_salary_details" EntityType="employeeModel.employee_salary_details" />
+          <AssociationSet Name="FK_employee_salary_details_employee" Association="employeeModel.FK_employee_salary_details_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employee_salary_details" EntitySet="employee_salary_details" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="mainali">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="employee">
           <Key>
             <PropertyRef Name="Eid" />
@@ -52,23 +63,36 @@
           <Property Name="Ename" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="EAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="EContact" Type="Int64" />
+          <NavigationProperty Name="employee_salary_details" Relationship="employeeModel.FK_employee_salary_details_employee" FromRole="employee" ToRole="employee_salary_details" />
         </EntityType>
+        <EntityType Name="employee_salary_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="salary_paid" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="paid_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="employeeModel.FK_employee_salary_details_employee" FromRole="employee_salary_details" ToRole="employee" />
+        </EntityType>
+        <Association Name="FK_employee_salary_details_employee">
+          <End Type="employeeModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="employeeModel.employee_salary_details" Role="employee_salary_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="Eid" />
+            </Principal>
+            <Dependent Role="employee_salary_details">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="employeeModelStoreContainer" CdmEntityContainer="employeeEntities">
-          <EntitySetMapping Name="mainalis">
-            <EntityTypeMapping TypeName="employeeModel.mainali">
-              <MappingFragment StoreEntitySet="mainali">
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="employeeModel.employee">
               <MappingFragment StoreEntitySet="employee">
@@ -76,6 +100,16 @@
                 <ScalarProperty Name="EAddress" ColumnName="EAddress" />
                 <ScalarProperty Name="Ename" ColumnName="Ename" />
                 <ScalarProperty Name="Eid" ColumnName="Eid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_salary_details">
+            <EntityTypeMapping TypeName="employeeModel.employee_salary_details">
+              <MappingFragment StoreEntitySet="employee_salary_details">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="paid_date" ColumnName="paid_date" />
+                <ScalarProperty Name="salary_paid" ColumnName="salary_paid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

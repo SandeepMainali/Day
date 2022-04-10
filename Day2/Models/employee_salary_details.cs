@@ -12,11 +12,13 @@ namespace Day2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class mainali
+    public partial class employee_salary_details
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string City { get; set; }
+        public int id { get; set; }
+        public decimal salary_paid { get; set; }
+        public System.DateTime paid_date { get; set; }
+        public int employee_id { get; set; }
+    
+        public virtual employee employee { get; set; }
     }
 }
