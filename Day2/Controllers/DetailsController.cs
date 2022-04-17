@@ -54,5 +54,11 @@ public class DetailsController : Controller
         db.SaveChanges();
         return RedirectToAction("Index");
     }
+    [HttpPost]
+    public ActionResult Index(DateTime dte,DateTime date,String dte)
+    {
+        var results = db.employee_salary_details.Where(x => x.paid_date>=dte && x.paid_date<=date && x.employee.Ename==dte).ToList();
+        return View(results);
+    }
 
 }

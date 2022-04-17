@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0e15035649024d1a9a68108555748461" Name="Diagram1" ZoomLevel="110">
-        <EntityTypeShape EntityType="employeeModel.employee" Width="1.5" PointX="2.5" PointY="1" FillColor="192, 0, 0" />
+        <EntityTypeShape EntityType="employeeModel.employee" Width="1.5" PointX="2.625" PointY="0.75" FillColor="192, 0, 0" />
         <EntityTypeShape EntityType="employeeModel.employee_salary_details" Width="1.5" PointX="5" PointY="0.75" FillColor="0, 192, 192" />
         <AssociationConnector Association="employeeModel.FK_employee_salary_details_employee" />
       </Diagram>
